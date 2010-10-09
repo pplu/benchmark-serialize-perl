@@ -256,14 +256,19 @@ sub load {
         }
     }
 
-    my @list;
+    my (@list, @fails);
     BENCHMARK:
     foreach my $name ( keys %benchmark ) {
 
         my $benchmark = $benchmark{$name};
         my @packages  = ( exists($benchmark->{packages}) ? @{ $benchmark->{packages} } : $name );
         
-        $_->require or next BENCHMARK for @packages;
+        for (@packages) {
+            unless ($_->require){
+               push @fails, $_;
+               next BENCHMARK 
+            }
+        }
 
         $benchmark->{args} = [ $benchmark->{args}->() ] if exists $benchmark->{args}
                                                         && ref $benchmark->{args} eq "CODE";
@@ -274,7 +279,7 @@ sub load {
 	push @list, bless $benchmark, "Benchmark::Serialize::Benchmark";
     }
 
-    return @list;
+    return \@list, \@fails;
 }
 
 =item list

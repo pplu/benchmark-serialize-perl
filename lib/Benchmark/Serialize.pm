@@ -98,16 +98,18 @@ our $output             = 'chart'; # chart or list
 sub cmpthese {
     my $iterations = shift;
     my $structure  = shift;
-    my @benchmarks = Benchmark::Serialize::Library->load( @_ );
+    my ($benchmarks, $fails) = Benchmark::Serialize::Library->load( @_ );
 
-    my $width   = width(map { $_->name } @benchmarks);
+    print "Failed to load $_\n" for @$fails;
+
+    my $width   = width(map { $_->name } @$benchmarks);
     my $results = { };
 
     print "\nModules\n";
 
     BENCHMARK:
 
-    foreach my $benchmark ( sort { $a->name cmp $b->name } @benchmarks ) {
+    foreach my $benchmark ( sort { $a->name cmp $b->name } @$benchmarks ) {
 	my $name = $benchmark->name;
 
         my ($deflated, $inflated);
