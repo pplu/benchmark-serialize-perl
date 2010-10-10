@@ -165,6 +165,85 @@ my $benchmarks = {
         inflate => sub { XML::TreePP->new()->parse( $_[0] )      },
         xml     => 1,
     },
+    'Data::Serializer::Data::Dumper' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Data::Dumper' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::Config::General' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Config::General' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::Data::Denter' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Data::Denter' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::Data::Taxi' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Data::Taxi' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::FreezeThaw' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'FreezeThaw' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::JSON' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'JSON' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::JSON::Syck' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'JSON::Syck' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::PHP::Serialization' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'PHP::Serialization' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::Storable' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Storable' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::XML::Dumper' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'XML::Dumper' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::XML::Simple' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'XML::Simple' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::YAML' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'YAML' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::YAML::Syck' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'YAML::Syck' ) },
+        packages => ['Data::Serializer'],
+    },
+
 };
 
 =head2 Library methods
