@@ -243,7 +243,18 @@ my $benchmarks = {
         args     => sub { Data::Serializer->new( 'serializer' => 'YAML::Syck' ) },
         packages => ['Data::Serializer'],
     },
-
+    'Data::Serializer::JSON::XS' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'JSON::XS' ) },
+        packages => ['Data::Serializer'],
+    },
+    'Data::Serializer::Data::MessagePack' => {
+        deflate  => sub { $_[1]->serialize( $_[0] ) },
+        inflate  => sub { $_[1]->deserialize( $_[0] ) },
+        args     => sub { Data::Serializer->new( 'serializer' => 'Data::MessagePack' ) },
+        packages => ['Data::Serializer'],
+    },
 };
 
 =head2 Library methods
